@@ -84,6 +84,10 @@
       {
         "command": "extension.otherOptions",
         "title": "%cmd.otherOptions.title%"
+      },
+      {
+        "command": "extension.testBit",
+        "title": "%cmd.testBit.title%"
       }
     ],
     "keybindings": [
@@ -94,6 +98,10 @@
       {
         "key": "alt+shift+d",
         "command": "extension.downloadSettings"
+      },
+      {
+        "key": "alt+shift+b",
+        "command": "extension.testBit"
       }
     ],
     "configuration": {
@@ -137,6 +145,25 @@
           "type": "boolean",
           "default": true,
           "description": "%ext.config.syncExtensions%"
+        },
+        "sync.platformToUse": {
+          "type": "string",
+          "default": "GitHub",
+          "description": "%ext.config.platform%",
+          "enum": [
+            "GitHub",
+            "Bitbucket"
+          ]
+        },
+        "sync.bitbucketUser": {
+          "type": "string",
+          "default": null,
+          "description": "%ext.config.bitbucketUser%"
+        },
+        "sync.bitbucketSnippet": {
+          "type": "string",
+          "default": null,
+          "description": "%ext.config.bitbucketSnippet%"
         }
       },
       "title": "%ext.config.title%"
@@ -167,6 +194,7 @@
   "dependencies": {
     "@octokit/rest": "^16.0.1",
     "adm-zip": "^0.4.13",
+    "bitbucket": "^1.5.0",
     "chokidar": "^2.0.4",
     "fs-extra": "^7.0.1",
     "https-proxy-agent": "^2.2.1",

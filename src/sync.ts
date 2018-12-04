@@ -17,6 +17,7 @@ import {
 } from "./setting";
 
 import PragmaUtil from "./pragmaUtil";
+import { BitbucketService } from "./service/bitbucketService";
 
 export class Sync {
   constructor(private context: vscode.ExtensionContext) {}
@@ -59,6 +60,28 @@ export class Sync {
       if (startUpSetting.autoUpload && tokenAvailable && gistAvailable) {
         return globalCommonService.StartWatch();
       }
+    }
+  }
+
+  public async testBit(): Promise<void> {
+    const args = arguments;
+    const env = new Environment(this.context);
+    const common = new Commons(env, this.context);
+    let bitbucket: BitbucketService = null;
+    let localConfig: LocalConfig = new LocalConfig();
+    const allSettingFiles: File[] = [];
+    let uploadedExtensions: ExtensionInformation[] = [];
+    const ignoredExtensions: ExtensionInformation[] = [];
+    const dateNow = new Date();
+
+    try {
+      localConfig = await common.InitalizeSettings(true, false)
+      if (localConfig.extConfig.platformToUse === 'Bitbucket') {
+        var user = await common.GetBitbucketPassword(localConfig.extConfig.bitbucketUser)
+        console.log(user)
+      }
+    } catch (err) {
+      console.error(err)
     }
   }
   /**

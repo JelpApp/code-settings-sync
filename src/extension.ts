@@ -41,4 +41,10 @@ export async function activate(context: vscode.ExtensionContext) {
       sync.advance.bind(sync)
     )
   );
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "extension.testBit",
+      sync.testBit.bind(sync)
+    )
+  );  
 }

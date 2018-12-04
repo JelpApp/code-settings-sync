@@ -9,6 +9,9 @@ export class ExtensionConfig {
   public autoDownload: boolean = false;
   public autoUpload = false;
   public forceDownload: boolean = false;
+  public bitbucketUser: string = null;
+  public platformToUse: string = null;
+  public sinppet: string = null;
 }
 
 export class LocalConfig {

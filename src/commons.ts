@@ -289,6 +289,30 @@ export default class Commons {
     return settings;
   }
 
+  public async GetBitbucketPassword(
+    username: string
+  ) :Promise<object> {
+    if (username === null || username === '') {
+      const options: vscode.InputBoxOptions = {
+        placeHolder: localize("common.placeholder.enterBitbucketUsername"),
+        password: false,
+        ignoreFocusOut: true
+      }
+
+      username = (await vscode.window.showInputBox(options)).trim()
+    }
+
+    const optionsPassword: vscode.InputBoxOptions = {
+      placeHolder: localize("common.placeholder.enterBitbucketPassword"),
+      password: true,
+      ignoreFocusOut: true
+    }
+
+    const password = await vscode.window.showInputBox(optionsPassword)
+
+    return {username, password}
+  }
+
   public async GetCustomSettings(): Promise<CustomSettings> {
     let customSettings: CustomSettings = new CustomSettings();
     try {
